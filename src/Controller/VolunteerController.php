@@ -25,12 +25,19 @@ class VolunteerController extends AbstractController
         return $this-> json($volunteersIndex);
     }
 
-    #[Route('/volunteer/{id}', methods: ['GET'])]
+    #[Route('/volunteer/{email}', methods: ['GET'])]
+    public function getOne(DatabaseService $db, string $email): Response
+    {
+        $volunteer = $db->query("SELECT * FROM volunteers WHERE email = :email", ['email' => $email]);
+        return $this->json($volunteer[0] ?? []);
+    }
+
+/*     #[Route('/volunteer/{id}', methods: ['GET'])]
     public function getOne(DatabaseService $db, int $id): Response
     {
         $volunteer = $db->query("SELECT * FROM volunteers WHERE id = :id", ['id' => $id]);
         return $this->json($volunteer[0] ?? []);
-    }
+    } */
 
     #[Route('/volunteer', methods: ['POST'])]
     public function create(DatabaseService $db, Request $request): Response
