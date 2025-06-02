@@ -30,7 +30,7 @@ class TypesController extends AbstractController
         $data = json_decode($request->getContent(), true);
 
         $db->execute(
-            'INSERT INTO waste_types (value, label) VALUES (:value, :label)',
+            "INSERT INTO waste_types (value, label) VALUES (:value, :label)",
 
             [
                 'value' => $data['value'],
@@ -44,7 +44,10 @@ class TypesController extends AbstractController
     #[Route('/waste_types/{id}', methods: ['DELETE'])]
     public function delete(DatabaseService $db, int $id): Response
     {
-        $db->execute("DELETE FROM waste_types WHERE id = :id", ['id' => $id]);
+        $db->execute(
+            "DELETE FROM waste_types WHERE 
+                id = :id", 
+                ['id' => $id]);
 
         return $this->json(['message' => 'Waste type deleted']);
     }
