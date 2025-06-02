@@ -26,3 +26,4 @@ services:
     App\Service\DatabaseService:
         arguments:
             $dbUrl: '%env(resolve:DATABASE_URL)%'
+
