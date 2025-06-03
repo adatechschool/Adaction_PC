@@ -1,0 +1,8 @@
+nelmio_cors:
+    defaults:
+        allow_origin: ['http://127.0.0.1:5500']
+        allow_credentials: true
+        allow_headers: ['Content-Type', 'Authorization']
+        allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'DELETE']
+    paths:
+        '^/api/': ~
