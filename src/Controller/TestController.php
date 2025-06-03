@@ -2,18 +2,14 @@
 
 namespace App\Controller;
 
-use App\Service\DatabaseService;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TestController extends AbstractController
+class TestController
 {
-    #[Route('/test', name: 'test')]
-    public function index(DatabaseService $db): Response
+    #[Route('/ping', name: 'ping', methods: ['GET'])]
+    public function ping(): JsonResponse
     {
-        $result = $db->query("SELECT * FROM volunteers");
-
-        return $this->json($result);
+        return new JsonResponse(['pong' => true]);
     }
 }
