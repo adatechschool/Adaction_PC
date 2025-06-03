@@ -20,7 +20,7 @@ class VolunteerController extends AbstractController
     #[Route('/volunteers/index', methods:['GET'])]
     public function getIndex(DatabaseService $db): Response
     {
-        $volunteersIndex = $db -> query("SELECT volunteers.firstname, volunteers.lastname, cities.name 
+        $volunteersIndex = $db -> query("SELECT volunteers.firstname, volunteers.lastname, volunteers.id, cities.name 
         FROM volunteers INNER JOIN cities on volunteers.city_id = cities.id");
         return $this-> json($volunteersIndex);
     }
